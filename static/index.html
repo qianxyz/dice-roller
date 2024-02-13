@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Dice Roller</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>Dice Roller</h1>
+
+  <form id="myForm">
+    <table>
+      <colgroup>
+        <col class="icon" />
+        <col class="name" />
+        <col class="count" />
+        <col class="output" />
+      </colgroup>
+
+      <tbody>
+        <tr class="dice-row normal-dice">
+          <td><img src="img/d4.webp" alt="d4"></td>
+          <td><input type="hidden" value="4"><label for="d4">d4</label></td>
+          <td><input type="number" id="d4" value="0" min="0"></td>
+          <td><output for="d4"></output></td>
+        </tr>
+        <tr class="dice-row normal-dice">
+          <td><img src="img/d6.webp" alt="d6"></td>
+          <td><input type="hidden" value="6"><label for="d6">d6</label></td>
+          <td><input type="number" id="d6" value="0" min="0"></td>
+          <td><output for="d6"></output></td>
+        </tr>
+        <tr class="dice-row normal-dice">
+          <td><img src="img/d8.webp" alt="d8"></td>
+          <td><input type="hidden" value="8"><label for="d8">d8</label></td>
+          <td><input type="number" id="d8" value="0" min="0"></td>
+          <td><output for="d8"></output></td>
+        </tr>
+        <tr class="dice-row normal-dice">
+          <td><img src="img/d10.webp" alt="d10"></td>
+          <td><input type="hidden" value="10"><label for="d10">d10</label></td>
+          <td><input type="number" id="d10" value="0" min="0"></td>
+          <td><output for="d10"></output></td>
+        </tr>
+        <tr class="dice-row normal-dice">
+          <td><img src="img/d12.webp" alt="d12"></td>
+          <td><input type="hidden" value="12"><label for="d12">d12</label></td>
+          <td><input type="number" id="d12" value="0" min="0"></td>
+          <td><output for="d12"></output></td>
+        </tr>
+        <tr class="dice-row normal-dice">
+          <td><img src="img/d20.webp" alt="d20"></td>
+          <td><input type="hidden" value="20"><label for="d20">d20</label></td>
+          <td><input type="number" id="d20" value="0" min="0"></td>
+          <td><output for="d20"></output></td>
+        </tr>
+
+        <tr>
+          <td><img src="img/d100.webp" alt="custom"></td>
+          <td>custom</td>
+          <td><button type="button" id="add-custom-dice">+</button></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td><label for="modifier">modifier</label></td>
+          <td><input type="number" id="modifier" value="0"></td>
+          <td><output id="modifier-output"></output></td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th></th>
+          <th>Total</th>
+          <th></th>
+          <th><output id="total"></output></th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </form>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

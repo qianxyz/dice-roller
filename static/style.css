@@ -1,0 +1,31 @@
+table {
+  table-layout: fixed;
+  width: 20em;
+}
+
+th,
+td {
+  text-align: center;
+  word-wrap: break-word;
+  height: 2em;
+}
+
+input[type=number] {
+  width: 4em;
+}
+
+col.icon {
+  width: 3em;
+}
+
+col.name {
+  width: 5em;
+}
+
+col.count {
+  width: 5em;
+}
+
+col.output {
+  width: 7em;
+}
