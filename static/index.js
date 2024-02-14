@@ -7,6 +7,8 @@ async function submitMyForm(event) {
 
   let total = 0;
 
+  const trng = document.getElementById("trng").checked;
+
   const diceRows = document.querySelectorAll("tr.dice-row");
   for (const row of diceRows) {
     const inputs = row.querySelectorAll("input");
@@ -22,6 +24,7 @@ async function submitMyForm(event) {
     const url = new URL("r", document.baseURI);
     url.searchParams.append("num", nDices);
     url.searchParams.append("max", nFaces);
+    url.searchParams.append("trng", trng);
 
     const response = await fetch(url);
     if (!response.ok) {
