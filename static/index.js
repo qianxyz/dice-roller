@@ -1,5 +1,7 @@
 const DICE_TYPES = [4, 6, 8, 10, 12, 20];
 
+var total = 0;
+
 // Get the numeric input value
 function getInputValue(diceType) {
   const val = $(`#numD${diceType}`).val();
@@ -28,8 +30,8 @@ $(document).ready(function () {
       const v = getInputValue(n);
       if (v > 0) {
         $(`#numD${n}`).val(v - 1);
-        updateMinusButtonState(n);
       }
+      updateMinusButtonState(n);
     });
 
     $(`#numD${n}`).on("input", function () {
@@ -37,7 +39,53 @@ $(document).ready(function () {
     });
   }
 
-  // TODO: Submit and clear
+  // Submit and clear buttons
+  $(`#rollBtn`).click(function () {
+    total = 0;
+
+    const trng = $(`#trngSwitch`).is(":checked");
+
+    for (const n of DICE_TYPES) {
+      $(`#outputD${n}`).html("");
+
+      const v = getInputValue(n);
+      if (v <= 0) {
+        continue;
+      }
+
+      $.ajax({
+        url: "r",
+        data: {
+          num: v,
+          max: n,
+          trng: trng,
+        },
+        success: function (result) {
+          $(`#outputD${n}`).html(result.join(" + ")).css("color", "black");
+          total += result.reduce((sum, n) => sum + n, 0);
+        },
+        error: function (xhr) {
+          $(`#outputD${n}`).html(xhr.responseJSON.error).css("color", "red");
+        },
+      });
+    }
+  });
+
+  $(document).ajaxStop(function () {
+    $(`#outputTotal`).html(total);
+  });
+
+  $(`#clearBtn`).click(function () {
+    for (const n of DICE_TYPES) {
+      $(`#numD${n}`).val("");
+      updateMinusButtonState(n);
+      $(`#outputD${n}`).html("");
+      $(`#outputTotal`).html("");
+    }
+    $(`#trngSwitch`).prop("checked", false);
+  });
+
+  // TODO: Make dice icons clickable
 });
 
 // const myForm = document.getElementById("myForm");
