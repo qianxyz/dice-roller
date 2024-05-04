@@ -1,31 +1,47 @@
-table {
-  table-layout: fixed;
-  width: 20em;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-th,
-td {
-  text-align: center;
-  word-wrap: break-word;
-  height: 2em;
-}
-
+/* Firefox */
 input[type=number] {
-  width: 4em;
+  text-align: right;
+  -moz-appearance: textfield;
 }
 
-col.icon {
-  width: 3em;
+body {
+  max-width: 720px;
 }
 
-col.name {
-  width: 5em;
+div[class^='dice-type'],
+div[class*=' dice-type'] {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-col.count {
-  width: 5em;
+.dice-type-d4 {
+  background-image: url("img/d4.svg");
 }
 
-col.output {
-  width: 7em;
+.dice-type-d6 {
+  background-image: url("img/d6.svg");
+}
+
+.dice-type-d8 {
+  background-image: url("img/d8.svg");
+}
+
+.dice-type-d10 {
+  background-image: url("img/d10.svg");
+}
+
+.dice-type-d12 {
+  background-image: url("img/d12.svg");
+}
+
+.dice-type-d20 {
+  background-image: url("img/d20.svg");
 }
