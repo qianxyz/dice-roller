@@ -11,15 +11,27 @@ def home():
 @app.route("/r")
 def roll():
     try:
-        num = int(request.args["num"])
-        dmax = int(request.args["max"])
-    except (KeyError, ValueError) as e:
-        return repr(e), 400
+        num = request.args["num"]
+    except KeyError:
+        return {"error": "Missing parameter: num"}, 400
+    try:
+        num = int(num)
+    except ValueError:
+        return {"error": f"Invalid value for num: {num}"}, 400
+
+    try:
+        dmax = request.args["max"]
+    except KeyError:
+        return {"error": "Missing parameter: max"}, 400
+    try:
+        dmax = int(dmax)
+    except ValueError:
+        return {"error": f"Invalid value for max: {dmax}"}, 400
 
     if not 0 <= num <= 10000:
-        return "Error: Number of rolls must be in [0, 10000]", 400
+        return {"error": "Number of rolls must be in [0, 10000]"}, 400
     if not 1 <= dmax <= 10000:
-        return "Error: Number of faces must be in [1, 10000]", 400
+        return {"error": "Number of faces must be in [1, 10000]"}, 400
 
     use_trng = request.args.get("trng") == "true"
     if not use_trng:
@@ -36,7 +48,10 @@ def roll():
         "rnd": "new",
     }
     r = requests.get("https://www.random.org/integers", params=payload)
-    return [int(n) for n in r.text.splitlines()]
+    if r.ok:
+        return [int(n) for n in r.text.splitlines()]
+    else:
+        return {"message": r.text}, 400
 
 # Tell Flask it is Behind a Proxy
 # https://flask.palletsprojects.com/en/3.0.x/deploying/proxy_fix/
