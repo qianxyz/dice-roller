@@ -93,5 +93,14 @@ $(document).ready(function () {
     $(`#trngSwitch`).prop("checked", false);
   });
 
-  // TODO: Make dice icons clickable
+  // Make dice icons clickable
+  for (const n of DICE_TYPES) {
+    $(`.dice-type-d${n}`).click(function () {
+      for (const m of DICE_TYPES) {
+        $(`#numD${m}`).val(m == n ? 1 : "");
+        updateMinusButtonState(m);
+      }
+      $(`#rollBtn`).trigger("click");
+    });
+  }
 });
